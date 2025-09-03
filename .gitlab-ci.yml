@@ -1,0 +1,37 @@
+stages:
+  - deploy
+
+deploy_to_elastic_beanstalk:
+  stage: deploy
+  image: node:latest
+  only:
+    - develop
+  script:
+    - npm ci
+    - npm run build
+    - apt-get update && apt-get install -y zip python3-venv python3-pip
+    - python3 -m venv venv
+    - . venv/bin/activate
+    - pip install awscli
+    - zip -r application.zip dist/ node_modules/ package.json package-lock.json .ebextensions/ Procfile
+    - echo "Verificando variables de entorno..."
+    - '[ -z "$AWS_ACCESS_KEY_ID" ] && echo "AWS_ACCESS_KEY_ID no está definida" && exit 1 || echo "AWS_ACCESS_KEY_ID está definida"'
+    - '[ -z "$AWS_SECRET_ACCESS_KEY" ] && echo "AWS_SECRET_ACCESS_KEY no está definida" && exit 1 || echo "AWS_SECRET_ACCESS_KEY está definida"'
+    - '[ -z "$AWS_REGION" ] && echo "AWS_REGION no está definida" && exit 1 || echo "AWS_REGION está definida"'
+    - '[ -z "$S3_BUCKET" ] && echo "S3_BUCKET no está definida" && exit 1 || echo "S3_BUCKET está definida"'
+    - mkdir -p ~/.aws
+    - |
+      cat > ~/.aws/credentials << EOF
+      [default]
+      aws_access_key_id = ${AWS_ACCESS_KEY_ID}
+      aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
+      EOF
+    - |
+      cat > ~/.aws/config << EOF
+      [default]
+      region = ${AWS_REGION}
+      output = json
+      EOF
+    - aws s3 cp application.zip s3://${S3_BUCKET}/application.zip
+    - aws elasticbeanstalk create-application-version --application-name wwf-backend --version-label $CI_COMMIT_SHORT_SHA --source-bundle S3Bucket=${S3_BUCKET},S3Key=application.zip
+    - aws elasticbeanstalk update-environment --environment-name wwf-backend-env --version-label $CI_COMMIT_SHORT_SHA

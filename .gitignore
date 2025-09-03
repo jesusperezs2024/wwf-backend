@@ -1,0 +1,66 @@
+# Dependencias
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+package-lock.json
+yarn.lock
+.yarn/
+
+# Entorno
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.local
+.env.*.local
+
+# Directorios de compilación
+/dist
+/build
+/out
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Directorios de caché
+.npm
+.eslintcache
+.node_repl_history
+.yarn-integrity
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+.vs/
+*.sublime-workspace
+*.sublime-project
+
+# Cobertura de pruebas
+coverage/
+.nyc_output/
+
+# Archivos temporales
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Documentación generada
+docs/
+
+# Configuraciones locales
+config.local.js
+config.development.js

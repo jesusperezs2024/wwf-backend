@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "Salesforce API - Donation Forms",
+    "description": "Colección de endpoints para interactuar con Salesforce desde la landing.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Diagnostic Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/landing/salesforce/diagnostic",
+          "host": ["{{base_url}}"],
+          "path": ["landing", "salesforce", "diagnostic"]
+        }
+      }
+    },
+    {
+      "name": "Get Salesforce Token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/landing/salesforce/token",
+          "host": ["{{base_url}}"],
+          "path": ["landing", "salesforce", "token"]
+        }
+      }
+    },
+    {
+      "name": "Verify Salesforce Token",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"{{access_token}}\",\n  \"instanceUrl\": \"https://your-instance.salesforce.com\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/landing/salesforce/verify-token",
+          "host": ["{{base_url}}"],
+          "path": ["landing", "salesforce", "verify-token"]
+        }
+      }
+    },
+    {
+      "name": "Create Donation Form",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"amount\": 100,\n  \"currency\": \"USD\",\n  \"message\": \"Keep up the great work!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/landing/salesforce/donation-forms",
+          "host": ["{{base_url}}"],
+          "path": ["landing", "salesforce", "donation-forms"]
+        }
+      }
+    },
+    {
+      "name": "Update Donation Form",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"amount\": 200\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/landing/salesforce/donation-forms/{{formId}}",
+          "host": ["{{base_url}}"],
+          "path": ["landing", "salesforce", "donation-forms", "{{formId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get Donation Form By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/landing/salesforce/donation-forms/{{formId}}",
+          "host": ["{{base_url}}"],
+          "path": ["landing", "salesforce", "donation-forms", "{{formId}}"]
+        }
+      }
+    }
+  ]
+}

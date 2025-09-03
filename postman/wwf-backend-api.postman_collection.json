@@ -1,0 +1,702 @@
+{
+  "info": {
+    "name": "WWF Backend API",
+    "description": "Colección completa de endpoints para el backend de WWF",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CMS - Autenticación JWT",
+      "description": "Endpoints protegidos con JWT para el CMS",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"email\": \"usuario@ejemplo.com\",\n\t\"password\": \"contraseña\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Autenticación de usuario para el CMS"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Banner Content",
+      "description": "Endpoints para gestionar contenidos de banners",
+      "item": [
+        {
+          "name": "Obtener todos los banner contents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content"]
+            },
+            "description": "Obtener todos los contenidos de banners"
+          }
+        },
+        {
+          "name": "Obtener banner content por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/:id",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Obtener un contenido de banner específico por ID"
+          }
+        },
+        {
+          "name": "Obtener banner contents por banner ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/banner/:bannerId",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", "banner", ":bannerId"],
+              "variable": [
+                {
+                  "key": "bannerId",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Obtener contenidos de banner por ID de banner"
+          }
+        },
+        {
+          "name": "Obtener banner contents por horizontal card ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/horizontal-card/:horizontalCardId",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", "horizontal-card", ":horizontalCardId"],
+              "variable": [
+                {
+                  "key": "horizontalCardId",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Obtener contenidos de banner por ID de tarjeta horizontal"
+          }
+        },
+        {
+          "name": "Crear banner content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"title\": \"Título del banner\",\n\t\"description\": \"Descripción del banner\",\n\t\"bannerId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content"]
+            },
+            "description": "Crear un nuevo contenido de banner"
+          }
+        },
+        {
+          "name": "Actualizar banner content",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"title\": \"Título actualizado\",\n\t\"description\": \"Descripción actualizada\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/:id",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Actualizar un contenido de banner existente"
+          }
+        },
+        {
+          "name": "Eliminar banner content",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/:id",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Eliminar un contenido de banner"
+          }
+        },
+        {
+          "name": "Guardar múltiples banner contents",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n\t{\n\t\t\"title\": \"Título 1\",\n\t\t\"description\": \"Descripción 1\",\n\t\t\"bannerId\": 1\n\t},\n\t{\n\t\t\"title\": \"Título 2\",\n\t\t\"description\": \"Descripción 2\",\n\t\t\"bannerId\": 1\n\t}\n]"
+            },
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/batch",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", "batch"]
+            },
+            "description": "Guardar múltiples contenidos de banner"
+          }
+        },
+        {
+          "name": "Contar banner contents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/banner-content/count/total",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "banner-content", "count", "total"]
+            },
+            "description": "Obtener el conteo total de contenidos de banner"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Cards",
+      "description": "Endpoints para gestionar tarjetas",
+      "item": [
+        {
+          "name": "Obtener todas las tarjetas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/card",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "card"]
+            },
+            "description": "Obtener todas las tarjetas"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Categories",
+      "description": "Endpoints para gestionar categorías",
+      "item": [
+        {
+          "name": "Obtener todas las categorías",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/category",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "category"]
+            },
+            "description": "Obtener todas las categorías"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Checkout",
+      "description": "Endpoints para gestionar checkouts",
+      "item": [
+        {
+          "name": "Obtener todos los checkouts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/checkout",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "checkout"]
+            },
+            "description": "Obtener todos los checkouts"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Products",
+      "description": "Endpoints para gestionar productos",
+      "item": [
+        {
+          "name": "Obtener todos los productos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/products",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "products"]
+            },
+            "description": "Obtener todos los productos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Products Amounts",
+      "description": "Endpoints para gestionar montos de productos",
+      "item": [
+        {
+          "name": "Obtener todos los montos de productos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/products-amounts",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "products-amounts"]
+            },
+            "description": "Obtener todos los montos de productos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CMS - Products General",
+      "description": "Endpoints para gestionar información general de productos",
+      "item": [
+        {
+          "name": "Obtener información general de productos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cms/products-general",
+              "host": ["{{base_url}}"],
+              "path": ["cms", "products-general"]
+            },
+            "description": "Obtener información general de productos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Landing - Payment",
+      "description": "Endpoints para gestionar pagos",
+      "item": [
+        {
+          "name": "Crear pago directo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"amount\": 100,\n\t\"description\": \"Donación\",\n\t\"payer\": {\n\t\t\"email\": \"usuario@ejemplo.com\",\n\t\t\"name\": \"Nombre\",\n\t\t\"surname\": \"Apellido\"\n\t},\n\t\"payment_method_id\": \"visa\",\n\t\"token\": \"card_token\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/landing/payment/direct",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "direct"]
+            },
+            "description": "Crear un pago directo"
+          }
+        },
+        {
+          "name": "Crear preferencia de checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"title\": \"Donación\",\n\t\t\t\"quantity\": 1,\n\t\t\t\"unit_price\": 100\n\t\t}\n\t],\n\t\"payer\": {\n\t\t\"email\": \"usuario@ejemplo.com\",\n\t\t\"name\": \"Nombre\",\n\t\t\"surname\": \"Apellido\"\n\t}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/landing/payment/checkout",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "checkout"]
+            },
+            "description": "Crear una preferencia de checkout"
+          }
+        },
+        {
+          "name": "Crear suscripción",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"preapproval_plan_id\": \"plan_id\",\n\t\"reason\": \"Donación mensual\",\n\t\"payer_email\": \"usuario@ejemplo.com\",\n\t\"card_token_id\": \"card_token\",\n\t\"auto_recurring\": {\n\t\t\"frequency\": 1,\n\t\t\"frequency_type\": \"months\",\n\t\t\"transaction_amount\": 100\n\t}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/landing/payment/subscription",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "subscription"]
+            },
+            "description": "Crear una suscripción de pago"
+          }
+        },
+        {
+          "name": "Cancelar suscripción",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/landing/payment/subscription/:subscription_id",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "subscription", ":subscription_id"],
+              "variable": [
+                {
+                  "key": "subscription_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Cancelar una suscripción existente"
+          }
+        },
+        {
+          "name": "Verificar estado de suscripción",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/landing/payment/subscription/:id",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "subscription", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Verificar el estado de una suscripción"
+          }
+        },
+        {
+          "name": "Webhook de MercadoPago",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"action\": \"payment.created\",\n\t\"data\": {\n\t\t\"id\": \"payment_id\"\n\t}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/landing/payment/webhook",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "webhook"]
+            },
+            "description": "Webhook para recibir notificaciones de MercadoPago"
+          }
+        },
+        {
+          "name": "Verificar estado de pago",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/landing/payment/status/:id",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "status", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Verificar el estado de un pago"
+          }
+        },
+        {
+          "name": "Reembolsar pago",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/landing/payment/refund/:payment_id",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "refund", ":payment_id"],
+              "variable": [
+                {
+                  "key": "payment_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Reembolsar un pago"
+          }
+        },
+        {
+          "name": "Obtener pagos de cliente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/landing/payment/customer/:customer_id",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "payment", "customer", ":customer_id"],
+              "variable": [
+                {
+                  "key": "customer_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Obtener historial de pagos de un cliente"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Landing - Coupons",
+      "description": "Endpoints para gestionar cupones",
+      "item": [
+        {
+          "name": "Obtener todos los cupones",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/landing/coupons",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "coupons"]
+            },
+            "description": "Obtener todos los cupones disponibles"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Landing - Salesforce",
+      "description": "Endpoints para integración con Salesforce",
+      "item": [
+        {
+          "name": "Enviar datos a Salesforce",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Nombre\",\n\t\"email\": \"usuario@ejemplo.com\",\n\t\"phone\": \"123456789\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/landing/salesforce",
+              "host": ["{{base_url}}"],
+              "path": ["landing", "salesforce"]
+            },
+            "description": "Enviar datos de contacto a Salesforce"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

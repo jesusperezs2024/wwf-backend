@@ -1,0 +1,52 @@
+{
+  "name": "api-wwf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "build:fresh": "npm run clean && npm run build",
+    "start": "npm run build:fresh && node dist/app.js",
+    "start:prod": "node dist/app.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "test:oauth": "ts-node src/test-oauth-connection.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "npm run typeorm migration:generate -- -d src/db/connection.ts -n",
+    "migration:run": "npm run typeorm migration:run -- -d src/db/connection.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d src/db/connection.ts",
+    "schema:generate": "npm run typeorm migration:generate -- -d src/db/connection.ts -n Inicial",
+    "schema:create": "npm run typeorm migration:run -- -d src/db/connection.ts",
+    "schema:sync": "ts-node src/db/sync-schema.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/mercadopago": "^1.5.11",
+    "axios": "^1.6.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsforce": "^3.6.6",
+    "jsonwebtoken": "^9.0.2",
+    "mercadopago": "^2.7.0",
+    "mysql2": "^3.14.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.21",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.13.10",
+    "rimraf": "^5.0.9",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.2"
+  },
+  "description": ""
+}
